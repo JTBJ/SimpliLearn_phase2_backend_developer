@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Get and Post Demo</title>
+
+</head>
+<body>
+	<h1 style="background-image: url('SummerImg.gif');">Get and Post Demo
+		<br><br><br><br><br><br>
+	</h1>
+	<a href="index.html">Back to Welcome Page</a>
+	
+	<form action="Lesson1GetServlet" method="get">
+		First Name: <input type="text" name="firstName"/>
+		<input type="submit" value="doGet()"/>
+	</form>
+	
+	<form action="Lesson1PostServlet" method="post">
+		First Name: <input type="text" name="firstName"/>
+		<input type="submit" value="doPost()"/>
+	</form>
+		
+	<form action="Lesson1_Implement_Servlet_Interface" method="post">
+		Name: <input type="text" name="hobby"/>
+		<input type="submit" value="Extending Servlet"/>
+	</form>
+	
+	<form action="Lesson1GenericServlet" method="post">
+		Country: <select name="country">
+					<option value="USA">USA</option>
+					<option value="UK">UK</option>
+					<option value="India">India</option>
+					<option value="Finland">Finland</option>
+					<option value="Fiji">Fiji</option>
+				 </select>
+		<input type="submit" value="Generic Servlet" />
+	</form>
+	
+	<a href="Lesson1ServletImpl">Filter Example</a><br/>
+	<a href="trackingSession.jsp">Tracking Sessions using Cookies</a><br/>
+	<a href="NoTracking.jsp">User Login No Cookies</a><br/>
+	<a href="withUrlWriting.jsp">Login with Url Rewriting</a><br/>
+	<a href="withoutUrlWriting.jsp">Login without Url Rewriting</a>
+	
+	<form action="Lesson1HiddenFormFields" method="post">
+		<input type="hidden" name="name" id="name" value="hidden"/>
+		<button>Click here to submit Hidden form</button>
+	</form>
+	
+	<a href="httpSession.jsp" >Sessions using HttpSession</a><br/>
+	<a href="userLogin.jsp">Final Login / Logout example</a>
+	
+</body>
+</html>
