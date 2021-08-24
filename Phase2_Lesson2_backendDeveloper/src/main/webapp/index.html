@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Page</title>
+<style>
+p {
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 20px;
+}
+
+a {
+	font-size: 20px;
+}
+</style>
+</head>
+<body style="background-color: pink;">
+	<h1>Welcome Page</h1>
+	<a href="servletInitDatabaseConnection">Call Servlet to initialize
+		database connection and print the values of a pre-existing table</a>
+	<br />
+	<a href="add_or_list_users.jsp">Add or List Users</a>
+	<br />
+	<a href="ProcedureServlet">Inserting a record using a store
+		procedure</a>
+	<br />
+	<a href="createUseDrop.jsp">Servlet that uses MySql CREATE, USE and
+		DROP </a>
+	<br />
+	<a href="insert_update_delete.jsp">Insert, update and delete
+		records</a>
+	<br/>
+	<a href="product_id.jsp">Select Product_Id</a>
+	<p>
+		Most of the databases I have created in this project were created on
+		my local system. Some of which I created using the section located
+		under the title <b>This Section will guide you to:"</b> and therefore,
+		the naming conventions mentioned later in the requirements don't
+		exactly resemble the names of the files and databases I've created. I
+		have a database / table used within this project in which I created
+		weeks ago, another created from the MySql command line and another
+		created in free style using java. Each aspect of the entire project
+		corresponds with the overall principles of the objectives for the
+		entirety of section 2. Below I included the code to create two of the
+		databases / tables I have recently created. The code for the table I
+		created weeks ago is not included. In the final three practice
+		assignments for lesson 2, I tried to follow the naming conventions
+		specified in the requirements.
+	</p>
+	<h2>To run the project it may be necessary to create the databases
+		I've used</h2>
+	<p>
+		<b>The statement below creates the database. Copy and paste as
+			needed.</b>
+	</p>
+	<fieldset style="background-color: #D2B48C;">
+		<p style="color: green;">
+			<b style="color: blue;">Connection</b> conn = <b style="color: blue;">DBConnection</b>.<b
+				style="color: red;">getConnection</b>(jdbcUrl, userName, password);
+		</p>
+		<p style="color: green;">
+			<b style="color: blue;">DBConnection</b>.<b style="color: red;">createManipulationStatement</b>(conn,
+			"CREATE DATABASE IF NOT EXISTS NewDatabase");
+		</p>
+	</fieldset>
+	<h2>It may also be necessary to create the tables I've used</h2>
+	<p>
+		<b>The statement below creates the tables. Copy and paste as
+			needed.</b>
+	</p>
+	<fieldset style="background-color: #D2B48C;">
+		<p style="color: green;">
+			<b style="color: blue;">DBConnection</b>.<b style="color: red;">createManipulationStatement</b>(conn,
+			<b>"CREATE TABLE IF NOT EXISTS Student" +<br />
+				&emsp;&emsp;&emsp;&emsp;"(id INT not NULL AUTO_INCREMENT, " +<br />
+				&emsp;&emsp;&emsp;&emsp;"First_Name VARCHAR(255), "+<br />
+				&emsp;&emsp;&emsp;&emsp;"Last_Name VARCHAR(255), "+<br />
+				&emsp;&emsp;&emsp;&emsp;"Email VARCHAR(255), "+<br />
+				&emsp;&emsp;&emsp;&emsp;"PRIMARY KEY(id))");
+			</b><br />
+	</fieldset>
+	<h2>Code to create the table for the Store Procedure</h2>
+	<p>
+		The table for the store procedure was created from the MySql command
+		line. You can create a <b>String</b> of the below query statement and
+		pass it to the <b>createManipulationStatement()</b> static method from
+		the <b>DBConnection</b> class to create this table if needed.
+	</p>
+	<fieldset style="background-color: black;">
+		<b style="color: white;"> CREATE TABLE eproduct(<br /> &emsp;Id
+			BIGINT primary key auto_increment,<br /> &emsp;name VARCHAR(100),<br />
+			&emsp;price decimal(10,2),<br /> &emsp;date_added TIMESTAMP default
+			now());<br />
+		</b>
+	</fieldset>
+	<h2>Code to create the Store Procedure</h2>
+	<p>The store procedure was created from the MySql command line and
+		is below.</p>
+	<fieldset style="background-color: black;">
+		<b style="color: white;">CREATE PROCEDURE add_product(IN pname
+			varchar(100), IN pprice decimal(10,2))<br /> INSERT INTO eproduct
+			(name, price) VALUES (pname, pprice);
+		</b>
+	</fieldset>
+</body>
+</html>
