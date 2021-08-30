@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.component.mapping">
+	<class name="Eproduct" table="eproduct">
+		<id name="id" type="long" column="ID">
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="string" column="name" />
+		<property name="price" type="big_decimal" column="price" />
+		<property name="dateAdded" type="timestamp"
+			column="date_Added" />
+		<component name="parts" class="ProductParts">
+			<property name="hdd" type="string" column="parts_hdd" />
+			<property name="cpu" type="string" column="parts_cpu" />
+			<property name="ram" type="string" column="parts_ram" />
+		</component>
+	</class>
+</hibernate-mapping>

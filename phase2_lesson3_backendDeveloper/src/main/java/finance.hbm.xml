@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="phase2_lesson3_backendDeveloper.practice.Finance" table="finance">
+		<id name="finance_Id" type="long" column="Id">
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string" column="Name" />
+		<property name="fType" type="string" column="Finance_Type" />
+	</class>
+</hibernate-mapping>

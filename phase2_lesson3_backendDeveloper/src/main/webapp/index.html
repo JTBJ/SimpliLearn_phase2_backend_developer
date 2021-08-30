@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Page</title>
+<style>
+fieldset {
+background-color: lightgreen;
+}
+</style>
+</head>
+<body>
+	<h1>Welcome Page</h1>
+	<br />
+
+	<fieldset>
+		<legend><b>Initialize the Session</b></legend>
+		<a href="InitHibernateServlet">Initialize Hibernate session</a> <br />
+		<p>This link opens and closes the Hibernate session. If you run
+			this program , you will receive the print out to the browser as 
+			well as the console to reference this connection.</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>List Content in a Table</b></legend>
+		<a href="ListContentServlet">List Students</a> <br />
+		<p>Instead of creating an EProducts table, I completed this task using a student 
+		table. Being the main focus of this assignment is the read opertion in the CRUD.
+		sense, I simply read from the student table I created for another project.</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>Using Hibernate with Annotations</b></legend>
+		<a href="PersistentClassServlet">Hibernate with Annotations</a> <br />
+		<p>Like in the previous link, I have included code that will create a new table each
+		time this link is clicked and display the data to the browser and / or console.</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>Using Log4j</b></legend>
+		<p>There is no link with Log4j as it is a configuration added for the entire project.
+		As always, I created projects for all assignments as one big project, with links redirecting
+		you to each objective of every assignment. The dependency for log4j was added to my pom.xml 
+		file and the log4j.properties file was added to the class path. There for, upon each run of 
+		any aspect of the entire application, you will see detailed logging information logged to the 
+		console. There is no link for log4j.
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>Collection Mapping in Hibernate</b></legend>
+		<a href="ProductDetailsServlet">Collection Mapping</a> <br />
+		<p>Because there are several classes, hbm mapping files, controller and view, I decided to use
+		the specific names provided within the example. The details of this aspect of the project closely
+		follows the program example provided to help.
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>Hibernate Lazy Collection</b></legend>
+		<p>Being that the Lazy-loading of the collection requirements for this assignment only require the
+		programmer to set the "lazy" attribute to true for collection mapping, I went ahead and set this attribute
+		in place during the creating of the previous link's program operations. Therefore, there is no link for 
+		lazy collection loading.
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>Component Mapping in Hibernate</b></legend>
+		<a href="ComponentMapping_ProductDetailsServlet">Component Mapping</a> <br />
+		<p>Here is another project that follows the example provided with the assignment.
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>Integration of Hibernate with Spring</b></legend>
+		<p>I did not create the Maven, Spring, Hibernate aspect within this project, as I wasn't sure how
+		to create a muti-module implementation within this current project. Most of all, I didn't want to
+		corrupt any of the current program I have worked hard to complete. The required final Practice project
+		is included within this program and its link follows this section. I will look into creating this aspect
+		of the program within another project in the future for self learning.
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><b>Final: Add New Product to the Database</b></legend>
+		<a href="addProduct.jsp">Add New Product</a> <br />
+		<p>In this project, I use code from an existing class that I created to build a data base. I will used 
+		this code as the template to add to the pre-created database.
+		</p>
+	</fieldset>
+	
+</body>
+</html>
