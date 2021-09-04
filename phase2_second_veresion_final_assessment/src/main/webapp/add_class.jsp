@@ -7,6 +7,23 @@
 <title>Add Class</title>
 </head>
 <body>
+
+<%
+	int count = 0;
+	
+	Cookie[] cookie = request.getCookies();
+
+	for (Cookie cookies : cookie) {
+		if (cookies.getName().equals("email")) {
+			count++;
+		}
+	}
+	
+	if(count == 0){
+		throw new ServletException("Invalid access. You need to first login.");
+	}
+	%>
+
 <h1>Add Class</h1>
 
 <nav>
@@ -19,6 +36,7 @@
 <legend>Fill in the fields below and submit</legend>
 <form action="<%= request.getContextPath() %>/AddRecord_Insert" method="post">
 Class Name : <input type="text" name="class_name" />
+Student
 <input type="submit" value="submit"/>
 </form>
 </fieldset>

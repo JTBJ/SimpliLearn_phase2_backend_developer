@@ -8,9 +8,6 @@
 </head>
 <body>
 	<h1>Database Access Page</h1>
-	<nav>
-		<a href="index.html">Home</a> || <a href="logout.jsp">Logout</a>
-	</nav>
 
 	<%
 	int count = 0;
@@ -28,6 +25,10 @@
 		throw new ServletException("Invalid access. You need to first login.");
 	}
 	%>
+	
+	<nav>
+		<a href="index.html">Home</a> || <a href="logout.jsp">Logout</a>
+	</nav>
 
 	<fieldset>
 		<legend>

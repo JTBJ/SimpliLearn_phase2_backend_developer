@@ -3,6 +3,7 @@ package phase2_second_veresion_final_assessment.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Subject {
 	@Column(name = "date_added")
 	private Date dateAdded;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "subject_id")
 	private List<Classes> classes;
 	

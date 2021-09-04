@@ -7,6 +7,23 @@
 <title>Add Student</title>
 </head>
 <body>
+
+<%
+	int count = 0;
+	
+	Cookie[] cookie = request.getCookies();
+
+	for (Cookie cookies : cookie) {
+		if (cookies.getName().equals("email")) {
+			count++;
+		}
+	}
+	
+	if(count == 0){
+		throw new ServletException("Invalid access. You need to first login.");
+	}
+	%>
+	
 <h1>Add Student</h1>
 
 <nav>
@@ -21,6 +38,7 @@
 Student First Name : <input type="text" name="student_first_name" /><br/>
 Student Last Name : <input type="text" name="student_last_name" /><br/>
 Student Email : <input type="text" name="student_email" /><br/>
+Class to Enroll Student : <input type="text" name="student_class_name" />
 <input type="submit" value="submit"/>
 </form>
 </fieldset>

@@ -7,6 +7,23 @@
 <title>Add Record Page</title>
 </head>
 <body>
+
+<%
+	int count = 0;
+	
+	Cookie[] cookie = request.getCookies();
+
+	for (Cookie cookies : cookie) {
+		if (cookies.getName().equals("email")) {
+			count++;
+		}
+	}
+	
+	if(count == 0){
+		throw new ServletException("Invalid access. You need to first login.");
+	}
+	%>
+	
 	<h1>Add Record Page</h1>
 	
 	<nav>

@@ -59,7 +59,6 @@ public class ListTable extends HttpServlet {
 
 		for (Cookie cookies : cookie) {
 			if (cookies.getName().equals("email")) {
-				out.print("<h3>Welcome " + cookies.getValue() + "</h3>");
 				count++;
 			}
 		}

@@ -7,6 +7,23 @@
 <title>Add Teacher</title>
 </head>
 <body>
+
+<%
+	int count = 0;
+	
+	Cookie[] cookie = request.getCookies();
+
+	for (Cookie cookies : cookie) {
+		if (cookies.getName().equals("email")) {
+			count++;
+		}
+	}
+	
+	if(count == 0){
+		throw new ServletException("Invalid access. You need to first login.");
+	}
+	%>
+
 <h1>Add Teacher</h1>
 
 <nav>
@@ -18,9 +35,10 @@
 <fieldset>
 <legend>Fill in the fields below and submit</legend>
 <form action="<%= request.getContextPath() %>/AddRecord_Insert" method="post">
-Teacher First Name : <input type="text" name="teacher_first_name" /><br/>
-Teacher Last Name : <input type="text" name="teacher_last_name" /><br/>
-Teacher Email : <input type="text" name="teacher_email" /><br/>
+Teacher First Name : <input type="text" name="teacher_first_name" required/><br/>
+Teacher Last Name : <input type="text" name="teacher_last_name" required/><br/>
+Teacher Email : <input type="text" name="teacher_email" required/><br/>
+Class Name : <input type="text" name="tch_class_name" required /><br/>
 <input type="submit" value="submit"/>
 </form>
 </fieldset>

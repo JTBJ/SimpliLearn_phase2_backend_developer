@@ -7,6 +7,23 @@
 <title>Add Subject</title>
 </head>
 <body>
+
+<%
+	int count = 0;
+	
+	Cookie[] cookie = request.getCookies();
+
+	for (Cookie cookies : cookie) {
+		if (cookies.getName().equals("email")) {
+			count++;
+		}
+	}
+	
+	if(count == 0){
+		throw new ServletException("Invalid access. You need to first login.");
+	}
+	%>
+	
 <h1>Add Subject</h1>
 <nav>
 <a href="index.html">Home</a> ||
@@ -18,6 +35,7 @@
 <legend>Fill in the fields below and submit</legend>
 <form action="<%= request.getContextPath() %>/AddRecord_Insert" method="post">
 Subject Name : <input type="text" name="subject_name" />
+Class Under this Subject : <input type="text" name="sb_class_name" />
 <input type="submit" value="submit"/>
 </form>
 </fieldset>
