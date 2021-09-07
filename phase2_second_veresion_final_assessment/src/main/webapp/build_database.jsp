@@ -5,6 +5,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Build Database</title>
+
+<style>
+body {
+	background-color: pink;
+}
+
+fieldset {
+	background-color: lightgrey;
+}
+</style>
+
 </head>
 <body>
 
@@ -27,9 +38,8 @@
 	<h1>Build Database</h1>
 
 	<nav>
-		<a href="index.html">Home</a> || 
-		<a href="database_access.jsp">Back to Database Interface</a> || 
-		<a href="logout.jsp">Logout</a>
+		<a href="index.html">Home</a> || <a href="database_access.jsp">Back
+			to Database Interface</a> || <a href="logout.jsp">Logout</a>
 	</nav>
 
 	<%@ page

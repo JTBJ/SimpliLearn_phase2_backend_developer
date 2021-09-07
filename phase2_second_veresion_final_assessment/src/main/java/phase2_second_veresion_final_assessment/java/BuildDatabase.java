@@ -18,7 +18,7 @@ public class BuildDatabase {
 
 		SessionFactory factory =
 				new Configuration()
-				.configure("hibernate.cfg2.xml")
+				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Student.class)
 				.addAnnotatedClass(Classes.class)
 				.addAnnotatedClass(Teacher.class)

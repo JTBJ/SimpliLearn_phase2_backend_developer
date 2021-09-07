@@ -5,6 +5,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Record Page</title>
+
+<style>
+	body {
+		background-color: pink;
+	}
+	
+	fieldset {
+		background-color: lightgrey;
+	}
+</style>
+
 </head>
 <body>
 

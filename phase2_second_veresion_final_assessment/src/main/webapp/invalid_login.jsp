@@ -7,7 +7,15 @@
 <title>Invalid Login</title>
 <style>
 legend {
-color: red;
+	color: red;
+}
+
+body {
+	background-color: pink;
+}
+
+fieldset {
+	background-color: lightgrey;
 }
 </style>
 </head>
@@ -18,8 +26,10 @@ color: red;
 		<a href="index.html">Home</a>
 	</nav>
 	<fieldset>
-		<legend><b>Invalid Login. Try again.</b></legend>
-		<form action="<%= request.getContextPath() %>/Login" method="post">
+		<legend>
+			<b>Invalid Login. Try again.</b>
+		</legend>
+		<form action="<%=request.getContextPath()%>/Login" method="post">
 			<b>Username</b><input type="text" name="username" required /> <b>Password</b><input
 				type="password" name="password" required /> <input type="submit"
 				value="Login" />

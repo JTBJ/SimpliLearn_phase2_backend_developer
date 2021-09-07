@@ -45,4 +45,34 @@
     <servlet-name>AddRecord_Insert</servlet-name>
     <url-pattern>/AddRecord_Insert</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SuClTeSt</display-name>
+    <servlet-name>SuClTeSt</servlet-name>
+    <servlet-class>phase2_second_veresion_final_assessment.servlet.Classes_SuClTeSt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SuClTeSt</servlet-name>
+    <url-pattern>/Classes_SuClTeSt</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TeacherMasterList</display-name>
+    <servlet-name>TeacherMasterList</servlet-name>
+    <servlet-class>phase2_second_veresion_final_assessment.servlet.TeacherMasterList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeacherMasterList</servlet-name>
+    <url-pattern>/TeacherMasterList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SubjectMasterList</display-name>
+    <servlet-name>SubjectMasterList</servlet-name>
+    <servlet-class>phase2_second_veresion_final_assessment.servlet.SubjectMasterList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubjectMasterList</servlet-name>
+    <url-pattern>/SubjectMasterList</url-pattern>
+  </servlet-mapping>
 </web-app>

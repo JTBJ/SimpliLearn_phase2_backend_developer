@@ -86,8 +86,9 @@ public class ListTable extends HttpServlet {
 		session.beginTransaction();
 
 		out.print("<!DOCTYPE html><html>");
-		out.print("<head>");
-		out.print("</head><body>");
+		out.print("<head><style>");
+		out.print("body {background-color: pink;} fieldset {background-color: lightgrey;}");
+		out.print("</style></head><body>");
 		out.print("<h1>Table Data for: " + result + "</h1>");
 		out.print("<br/><nav><a href='index.html'>Home</a> ||");
 		out.print("<a href=\"database_access.jsp\"> Back to Database Interface</a></nav>");
@@ -117,8 +118,9 @@ public class ListTable extends HttpServlet {
 			out.print("<tr>");
 			out.print("<th>classes_id</th>");
 			out.print("<th>class_name</th>");
-//			out.print("<th>class_subject_id</th>");
-//			out.print("<th>class_teacher_id</th>");
+			out.print("<th>class_subject_id</th>");
+			out.print("<th>class_teacher_id</th>");
+			out.print("<th>class_student_id</th>");
 			out.print("<th>date_added</th>");
 			out.print("</tr>");
 			
@@ -128,6 +130,9 @@ public class ListTable extends HttpServlet {
 				out.print("<tr>");
 				out.print("<td>" + classess.getClass_id() + "</td>");
 				out.print("<td>" + classess.getClassName() + "</td>");
+				out.print("<td>" + classess.getSubject() + "</td>");
+				out.print("<td>" + classess.getTeacher() + "</td>");
+				out.print("<td>" + classess.getStudent() + "</td>");
 				out.print("<td>" + classess.getDateAdded() + "</td>");
 				out.print("</tr>");
 			}
@@ -135,10 +140,11 @@ public class ListTable extends HttpServlet {
 		case "Teachers":
 			
 			out.print("<tr>");
-			out.print("<th>teacher_id</th");
+			out.print("<th>teacher_id</th>");
 			out.print("<th>first_name</th>");
 			out.print("<th>last_name</th>");
 			out.print("<th>email</th>");
+			out.print("<th>class_id</th>");
 			out.print("<th>date_added</th>");
 			out.print("</tr>");
 			
@@ -150,6 +156,7 @@ public class ListTable extends HttpServlet {
 				out.print("<td>" + teacher.getFirstName() + "</td>");
 				out.print("<td>" + teacher.getLastName() + "</td>");
 				out.print("<td>" + teacher.getEmail() + "</td>");
+				out.print("<td>" + teacher.getClasses() + "</td>");
 				out.print("<td>" + teacher.getDateAdded() + "</td>");
 				out.print("</tr>");
 			}
@@ -160,7 +167,7 @@ public class ListTable extends HttpServlet {
 			out.print("<th>first_name</th>");
 			out.print("<th>last_name</th>");
 			out.print("<th>email</th>");
-//			out.print("<td>student_class_id</td>");
+			out.print("<th>student_class_id</th>");
 			out.print("<th>date_added</th>");
 			out.print("</tr>");
 
@@ -172,6 +179,7 @@ public class ListTable extends HttpServlet {
 				out.print("<td>" + student.getFirstName() + "</td>");
 				out.print("<td>" + student.getLastName() + "</td>");
 				out.print("<td>" + student.getEmail() + "</td>");
+				out.print("<td>" + student.getClasses() + "</td>");
 				out.print("<td>" + student.getDateAdded() + "</td>");
 				out.print("</tr>");
 			}

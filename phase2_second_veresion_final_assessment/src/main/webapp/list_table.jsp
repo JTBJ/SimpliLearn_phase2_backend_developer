@@ -5,6 +5,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Table Selection Page</title>
+
+<style>
+body {
+	background-color: pink;
+}
+
+fieldset {
+	background-color: grey;
+}
+</style>
 </head>
 <body>
 
