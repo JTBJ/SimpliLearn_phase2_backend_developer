@@ -47,8 +47,10 @@ public class ListTable extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();

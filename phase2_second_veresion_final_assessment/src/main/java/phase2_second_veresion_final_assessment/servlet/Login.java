@@ -1,7 +1,6 @@
 package phase2_second_veresion_final_assessment.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.UUID;
 
 import javax.servlet.ServletException;

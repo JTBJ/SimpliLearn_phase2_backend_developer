@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +36,23 @@ public class AddStudentClass extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		int count = 0;
+
+		Cookie[] cookie = request.getCookies();
+
+		for (Cookie cookies : cookie) {
+			if (cookies.getName().equals("email")) {
+				count++;
+			}
+		}
+
+		if (count == 0) {
+			throw new ServletException("Invalid access. You need to first login.");
+		}
 
 		int studentId = 0;
 		long classId = 0;
@@ -73,11 +89,17 @@ public class AddStudentClass extends HttpServlet {
 
 		Classes cl = session.get(Classes.class, classId);
 
-		//updating classes table
-		cl.setStudent(student);
+		if (!(student == null)) {
+			// updating student table
+			student.setClasses(cl);
+		}
 
-		//updating student table
-		student.setClasses(cl);
+		if (!(cl == null)) {
+			// updating classes table
+			cl.setStudent(student);
+		}
+
+		System.out.println("Student: " + student + "\nClass: " + cl);
 
 //		session.save(cl);
 //

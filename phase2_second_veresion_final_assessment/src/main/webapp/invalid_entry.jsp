@@ -4,7 +4,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Assign Student to a Class</title>
+<title>Invalid Entry</title>
+<style>
+fieldset {
+	background-color: lightgrey;
+}
+
+body {
+	background-color: pink;
+}
+</style>
 </head>
 <body>
 	<%
@@ -23,16 +32,17 @@
 		throw new ServletException("Invalid access. You need to first login.");
 	}
 	%>
-	<h1>Assign Student to a Class</h1>
+	<h1>You have made and invalid entry. Check entity spelling and
+		make sure it in the table</h1>
 
 	<fieldset>
-		<legend>Enter the student's email and the class to assign it
-			to</legend>
-		<form action="AddStudentClasses" method="post">
-			Student Email : <input type="email" name="student_email" required />
-			Class Name : <input type="text" value="class_name" required /> <input
-				type="submit" value="Add Class" />
-		</form>
+		<legend>Check spelling and make sure the desired entity is
+			within the table</legend>
+		<nav>
+			<a href="index.html">Home</a> || <a href="database_access.jsp">Database
+				Interface</a> || <a href="assign_entities.jsp">Assignments</a> || <a
+				href="logout.jsp">Logout</a>
+		</nav>
 	</fieldset>
 </body>
 </html>

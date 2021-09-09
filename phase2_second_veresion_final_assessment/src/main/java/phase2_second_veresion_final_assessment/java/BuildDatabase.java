@@ -18,7 +18,7 @@ public class BuildDatabase {
 
 		SessionFactory factory =
 				new Configuration()
-				.configure("hibernate.cfg.xml")
+				.configure("hibernate.cfg2.xml")
 				.addAnnotatedClass(Student.class)
 				.addAnnotatedClass(Classes.class)
 				.addAnnotatedClass(Teacher.class)
@@ -47,10 +47,10 @@ public class BuildDatabase {
 		
 		session.beginTransaction();
 		
-		session.save(subject);
-		session.save(teacher);
-		session.save(classes);
-		session.save(student);
+//		session.save(subject);
+//		session.save(teacher);
+//		session.save(classes);
+//		session.save(student);
 		
 		session.getTransaction().commit();
 		

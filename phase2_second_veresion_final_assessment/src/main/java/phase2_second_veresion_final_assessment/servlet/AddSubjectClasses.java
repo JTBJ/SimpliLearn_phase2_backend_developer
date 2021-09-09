@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,20 @@ public class AddSubjectClasses extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int count = 0;
+
+		Cookie[] cookie = request.getCookies();
+
+		for (Cookie cookies : cookie) {
+			if (cookies.getName().equals("email")) {
+				count++;
+			}
+		}
+
+		if (count == 0) {
+			throw new ServletException("Invalid access. You need to first login.");
+		}
+		
 		String subject = request.getParameter("subject");
 		String[] classes = request.getParameterValues("class_name");
 		
@@ -55,8 +70,10 @@ public class AddSubjectClasses extends HttpServlet {
 		
 		session.beginTransaction();
 				
+		@SuppressWarnings("unchecked")
 		List<Classes> classList = session.createQuery("from Classes").getResultList();
 		
+		@SuppressWarnings("unchecked")
 		List<Subject> subjects = session.createQuery("from Subject where name='" + subject + "'").getResultList();
 		
 		for(Subject s : subjects) {
@@ -67,25 +84,29 @@ public class AddSubjectClasses extends HttpServlet {
 		
 		Subject tableSubject = session.get(Subject.class, subjectId);
 		
-		List<Classes> temp = new ArrayList<>();
-		
-		Classes tempClasses = null;
-		
-		//updating subjects and adding classes to temp
-		for(Classes c : classList) {
-			for(String s : classes) {
-				if(c.getClassName().equalsIgnoreCase(s)) {
-					classId = c.getClass_id();
-					tempClasses = session.get(Classes.class, classId);
-					tempClasses.setSubject(tableSubject);
-					temp.add(tempClasses);
-//					tableSubject.getClasses().add(c);
+		if(!(tableSubject == null)){
+			List<Classes> temp = new ArrayList<>();
+			
+			Classes tempClasses = null;
+			
+			//updating subjects and adding classes to temp
+			for(Classes c : classList) {
+				for(String s : classes) {
+					if(c.getClassName().equalsIgnoreCase(s)) {
+						classId = c.getClass_id();
+						tempClasses = session.get(Classes.class, classId);
+						tempClasses.setSubject(tableSubject);
+						temp.add(tempClasses);
+					}
 				}
 			}
+			
+			//updating list data structure, classes, in subject class
+			tableSubject.setClasses(temp);
+			
+		}else {
+			response.sendRedirect("invalid_entry.jsp");
 		}
-		
-		//updating list data structure, classes, in subject class
-		tableSubject.setClasses(temp);
 		
 //		session.save(tableSubject);
 //		

@@ -40,7 +40,7 @@ public class AddRecord extends HttpServlet {
 			throws ServletException, IOException {
 
 		int count = 0;
-		
+
 		Cookie[] cookie = request.getCookies();
 
 		for (Cookie cookies : cookie) {
@@ -48,27 +48,27 @@ public class AddRecord extends HttpServlet {
 				count++;
 			}
 		}
-		
-		if(count == 0){
+
+		if (count == 0) {
 			throw new ServletException("Invalid access. You need to first login.");
 		}
-		
+
 		String string = request.getParameter("table");
 
 		switch (string) {
-			case "subject":
-				response.sendRedirect("add_subject.jsp");
-				break;
-			case "class":
-				response.sendRedirect("add_class.jsp");
-				break;
-			case "teacher":
-				response.sendRedirect("add_teacher.jsp");
-				break;
-			case "student":
-				response.sendRedirect("add_student.jsp");
-				break;
-			default:
+		case "subject":
+			response.sendRedirect("add_subject.jsp");
+			break;
+		case "class":
+			response.sendRedirect("add_class.jsp");
+			break;
+		case "teacher":
+			response.sendRedirect("add_teacher.jsp");
+			break;
+		case "student":
+			response.sendRedirect("add_student.jsp");
+			break;
+		default:
 		}
 	}
 

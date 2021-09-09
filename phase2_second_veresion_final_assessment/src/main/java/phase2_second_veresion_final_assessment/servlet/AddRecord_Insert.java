@@ -1,10 +1,6 @@
 package phase2_second_veresion_final_assessment.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -50,9 +46,6 @@ public class AddRecord_Insert extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 		
 		int count = 0;
 		
@@ -63,8 +56,8 @@ public class AddRecord_Insert extends HttpServlet {
 				count++;
 			}
 		}
-		
-		if(count == 0){
+
+		if (count == 0) {
 			throw new ServletException("Invalid access. You need to first login.");
 		}
 		
@@ -90,12 +83,7 @@ public class AddRecord_Insert extends HttpServlet {
 		System.out.println(request.getParameter("student_first_name"));
 		
 		if (request.getParameter("subject_name") != null) {
-			List<Classes> sb_class = new ArrayList<>();
-			classes = new Classes(request.getParameter("sb_class_name"));
-			classes.setSubject(subject);
-			sb_class.add(classes);
 			subject = new Subject(request.getParameter("subject_name"));
-			subject.setClasses(sb_class);
 			session.save(subject);
 		}
 
@@ -105,31 +93,26 @@ public class AddRecord_Insert extends HttpServlet {
 		}
 
 		if (request.getParameter("teacher_first_name") != null) {
-			List<Classes> tc_cl = new ArrayList<>();
-			classes = new Classes(request.getParameter("tch_class_name"));
-			classes.setTeacher(teacher);
-			tc_cl.add(classes);
-			teacher = new Teacher(request.getParameter("teacher_first_name"),
-					request.getParameter("teacher_last_name"),
-					request.getParameter("teacher_email"));
-			teacher.setClasses(tc_cl);
-			session.save(teacher);
+			
+				teacher = new Teacher(request.getParameter("teacher_first_name"),
+						request.getParameter("teacher_last_name"),
+						request.getParameter("teacher_email"));
+				
+				session.save(teacher);
 		}
 
 		if (request.getParameter("student_first_name") != null) {
-			classes = new Classes(request.getParameter("student_class_name"));
-			student = new Student(request.getParameter("student_first_name"),
-					request.getParameter("student_last_name"),
-					request.getParameter("student_email"));
-			classes.setStudent(student);
-			student.setClasses(classes);
-			session.save(student);
+							
+				student = new Student(request.getParameter("student_first_name"),
+						request.getParameter("student_last_name"),
+						request.getParameter("student_email"));
+				
+				session.save(student);
 		}
 		
 		session.getTransaction().commit();
 		
 		session.close();
-		factory.close();
 		
 		response.sendRedirect("record_added.jsp");
 	}

@@ -18,6 +18,22 @@ body {
 
 </head>
 <body>
+	<%
+	int count = 0;
+
+	Cookie[] cookie = request.getCookies();
+
+	for (Cookie cookies : cookie) {
+		if (cookies.getName().equals("email")) {
+			out.print("<h3>Welcome " + cookies.getValue() + "</h3>");
+			count++;
+		}
+	}
+
+	if (count == 0) {
+		throw new ServletException("Invalid access. You need to first login.");
+	}
+	%>
 	<h1>Master List of Records Added</h1>
 
 	<fieldset>

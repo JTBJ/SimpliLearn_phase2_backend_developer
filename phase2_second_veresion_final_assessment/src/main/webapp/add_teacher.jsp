@@ -49,8 +49,7 @@ fieldset {
 			Teacher First Name : <input type="text" name="teacher_first_name"
 				required /><br /> Teacher Last Name : <input type="text"
 				name="teacher_last_name" required /><br /> Teacher Email : <input
-				type="text" name="teacher_email" required /><br /> Class Name : <input
-				type="text" name="tch_class_name" required /><br /> <input
+				type="text" name="teacher_email" required /><br /> <input
 				type="submit" value="submit" />
 		</form>
 	</fieldset>

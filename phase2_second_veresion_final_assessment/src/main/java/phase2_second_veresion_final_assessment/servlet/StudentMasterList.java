@@ -1,11 +1,8 @@
 package phase2_second_veresion_final_assessment.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +37,20 @@ public class StudentMasterList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		int count = 0;
+
+		Cookie[] cookie = request.getCookies();
+
+		for (Cookie cookies : cookie) {
+			if (cookies.getName().equals("email")) {
+				count++;
+			}
+		}
+
+		if (count == 0) {
+			throw new ServletException("Invalid access. You need to first login.");
+		}
 
 		String studentFirstName = request.getParameter("student_fname");
 		String studentLastName = request.getParameter("student_lname");
