@@ -46,7 +46,7 @@ public class Classes_SuClTeSt extends HttpServlet {
 		cls.setStudent(student);
 		
 		SessionFactory factory = new Configuration()
-				.configure()
+				.configure("hibernate.cfg2.xml")
 				.addAnnotatedClass(Subject.class)
 				.addAnnotatedClass(Classes.class)
 				.addAnnotatedClass(Teacher.class)

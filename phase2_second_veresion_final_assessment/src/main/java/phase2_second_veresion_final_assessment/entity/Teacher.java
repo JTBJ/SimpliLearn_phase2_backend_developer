@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "teacher_table")
+@Table(name = "teacher")
 public class Teacher {
 
 	@Id
@@ -30,7 +30,7 @@ public class Teacher {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@Column(name = "email")
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	
 	@OneToMany(cascade = CascadeType.ALL)

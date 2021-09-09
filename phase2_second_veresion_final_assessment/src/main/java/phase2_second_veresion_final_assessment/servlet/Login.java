@@ -41,9 +41,6 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
@@ -54,13 +51,13 @@ public class Login extends HttpServlet {
 		if (username.equals("SimpliLearn") && password.equals("certification")) {
 			Cookie cookie1 = new Cookie("email", username);
 			Cookie cookie2 = new Cookie("UserId", UUID.randomUUID().toString());
-			
-			cookie1.setMaxAge(60*60*24);
-			cookie2.setMaxAge(60*60*24);
-			
+
+			cookie1.setMaxAge(60 * 60 * 24);
+			cookie2.setMaxAge(60 * 60 * 24);
+
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
-			
+
 			response.sendRedirect("database_access.jsp");
 		}
 	}

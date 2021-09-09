@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "classes_table")
+@Table(name = "classes")
 public class Classes {
 
 	@Id
@@ -25,7 +25,7 @@ public class Classes {
 	@Column(name = "classes_id")
 	private long class_id;
 	
-	@Column(name = "class_name")
+	@Column(name = "class_name", nullable = false, unique = true)
 	private String className;
 	
 	@Column(name = "date_added")

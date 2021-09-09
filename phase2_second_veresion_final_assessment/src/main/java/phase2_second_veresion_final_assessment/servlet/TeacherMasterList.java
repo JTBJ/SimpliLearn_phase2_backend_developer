@@ -2,6 +2,8 @@ package phase2_second_veresion_final_assessment.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,52 +18,58 @@ import phase2_second_veresion_final_assessment.entity.Classes;
 import phase2_second_veresion_final_assessment.entity.Student;
 import phase2_second_veresion_final_assessment.entity.Subject;
 import phase2_second_veresion_final_assessment.entity.Teacher;
+import phase2_second_veresion_final_assessment.java.DataStorage;
 
 /**
  * Servlet implementation class SubjectMasterList
  */
 public class TeacherMasterList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TeacherMasterList() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public TeacherMasterList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		String[] classList = request.getParameterValues("subject_name");
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		for (String string : classList) {
-			out.print(string + "<br/>");
+		String teacherFirstName = request.getParameter("teacher_fname");
+		String teacherLastName = request.getParameter("teacher_lname");
+		String teacherEmail = request.getParameter("teacher_email");
+
+		DataStorage.getTeacher().add(new Teacher(teacherFirstName, teacherLastName, teacherEmail));
+
+		System.out.println(DataStorage.getTeacher());
+
+		SessionFactory factory = new Configuration().configure("hibernate.cfg2.xml").addAnnotatedClass(Subject.class)
+				.addAnnotatedClass(Classes.class).addAnnotatedClass(Teacher.class).addAnnotatedClass(Student.class)
+				.buildSessionFactory();
+
+		Session session = factory.openSession();
+
+		session.beginTransaction();
+
+		try {
+			session.save(new Teacher(teacherFirstName, teacherLastName, teacherEmail));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServletException("Cannot add duplicate values");
 		}
-		
-//		SessionFactory factory = new Configuration()
-//				.configure()
-//				.addAnnotatedClass(Subject.class)
-//				.addAnnotatedClass(Classes.class)
-//				.addAnnotatedClass(Teacher.class)
-//				.addAnnotatedClass(Student.class)
-//				.buildSessionFactory();
-//		
-//		Session session = factory.openSession();
-//		
-//		session.beginTransaction();
-//						
-//		session.getTransaction().commit();
-//		
-//		session.close();
-//		
-//		factory.close();
+
+		session.getTransaction().commit();
+
+		session.close();
+
+		response.sendRedirect("subjects_classes_teachers_again.jsp");
+
 	}
 
 }

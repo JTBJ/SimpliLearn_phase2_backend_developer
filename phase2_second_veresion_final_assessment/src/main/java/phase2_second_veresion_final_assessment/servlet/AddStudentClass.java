@@ -1,9 +1,7 @@
 package phase2_second_veresion_final_assessment.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,18 +16,17 @@ import phase2_second_veresion_final_assessment.entity.Classes;
 import phase2_second_veresion_final_assessment.entity.Student;
 import phase2_second_veresion_final_assessment.entity.Subject;
 import phase2_second_veresion_final_assessment.entity.Teacher;
-import phase2_second_veresion_final_assessment.java.DataStorage;
 
 /**
- * Servlet implementation class SubjectMasterList
+ * Servlet implementation class AddStudentClass
  */
-public class StudentMasterList extends HttpServlet {
+public class AddStudentClass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public StudentMasterList() {
+	public AddStudentClass() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,13 +38,12 @@ public class StudentMasterList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String studentFirstName = request.getParameter("student_fname");
-		String studentLastName = request.getParameter("student_lname");
+		int studentId = 0;
+		long classId = 0;
+
 		String studentEmail = request.getParameter("student_email");
 
-		DataStorage.getStudent().add(new Student(studentFirstName, studentLastName, studentEmail));
-
-		System.out.println(DataStorage.getStudent());
+		String className = request.getParameter("class_name");
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg2.xml").addAnnotatedClass(Subject.class)
 				.addAnnotatedClass(Classes.class).addAnnotatedClass(Teacher.class).addAnnotatedClass(Student.class)
@@ -57,11 +53,35 @@ public class StudentMasterList extends HttpServlet {
 
 		session.beginTransaction();
 
-		try {
-			session.save(new Student(studentFirstName, studentLastName, studentEmail));
-		} catch (Exception e) {
-			throw new ServletException("Cannot add duplicate values");
+		List<Student> students = session.createQuery("from Student where email='" + studentEmail + "'").list();
+
+		for (Student s : students) {
+			if (s.getEmail().equalsIgnoreCase(studentEmail)) {
+				studentId = s.getId();
+			}
 		}
+
+		Student student = session.get(Student.class, studentId);
+
+		List<Classes> clss = session.createQuery("from Classes where class_name='" + className + "'").list();
+
+		for (Classes c : clss) {
+			if (c.getClassName().equalsIgnoreCase(className)) {
+				classId = c.getClass_id();
+			}
+		}
+
+		Classes cl = session.get(Classes.class, classId);
+
+		//updating classes table
+		cl.setStudent(student);
+
+		//updating student table
+		student.setClasses(cl);
+
+//		session.save(cl);
+//
+//		session.save(student);
 
 		session.getTransaction().commit();
 

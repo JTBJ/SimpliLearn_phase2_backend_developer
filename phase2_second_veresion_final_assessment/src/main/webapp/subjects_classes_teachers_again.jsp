@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Subject, Class, Teacher, Student</title>
+<title>Add Another Subject, Class, Teacher or Student</title>
 
 <style>
 body {
@@ -18,7 +18,7 @@ fieldset {
 
 </head>
 <body>
-	<h1>Create a Master List of Subjects, Classes and / or Teachers</h1>
+	<h1>Add Another Subject, Class, Teacher, Student or Make Assignment between them</h1>
 	
 	<nav>
 		<a href="index.html">Home</a> || <a href="database_access.jsp">Database

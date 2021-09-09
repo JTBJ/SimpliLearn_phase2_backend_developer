@@ -2,6 +2,8 @@ package phase2_second_veresion_final_assessment.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,28 +40,41 @@ public class ClassesMasterList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-
 		String[] classList = request.getParameterValues("class_name");
 
+		Set<String> set = new HashSet<>();
+
 		for (String string : classList) {
-			out.print(string);
+			set.add(string);
 		}
 
-//		SessionFactory factory = new Configuration().configure().addAnnotatedClass(Subject.class)
-//				.addAnnotatedClass(Classes.class).addAnnotatedClass(Teacher.class).addAnnotatedClass(Student.class)
-//				.buildSessionFactory();
-//
-//		Session session = factory.openSession();
-//
-//		session.beginTransaction();
-//
-//		session.getTransaction().commit();
-//
-//		session.close();
-//
-//		factory.close();
+		SessionFactory factory = new Configuration().configure("hibernate.cfg2.xml").addAnnotatedClass(Subject.class)
+				.addAnnotatedClass(Classes.class).addAnnotatedClass(Teacher.class).addAnnotatedClass(Student.class)
+				.buildSessionFactory();
+
+		Session session = factory.openSession();
+
+		session.beginTransaction();
+
+		try {
+			for (String string : set) {
+				if (string.equals("")) {
+
+				} else {
+					session.save(new Classes(string));
+				}
+			}
+		} catch (Exception e) {
+			throw new ServletException("Cannot add duplicate values");
+			//thinking about adding a redirect here
+		}
+
+		session.getTransaction().commit();
+
+		session.close();
+
+		response.sendRedirect("subjects_classes_teachers_again.jsp");	
+
 	}
 
 }
